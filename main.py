@@ -1,16 +1,14 @@
 import sqlite3
 
-def printTableNames(cur):
-    cur.execute('SELECT name FROM sqlite_master WHERE type = "table"')
-    tableNames = cur.fetchall()
-    print("Table Names:")
-    for name in tableNames:
-        print('   ', name[0])
-
 sqlite_file = './FPA_FOD_20170508.sqlite'
+
+def printData(conn):
+    cur = conn.cursor()
+    cur.execute('SELECT LATITUDE, LONGITUDE, FIRE_SIZE FROM fires LIMIT 1000')
+    data = cur.fetchall()
+    for entries in data:
+        print(entries[0], entries[1], entries[2])
+
 conn = sqlite3.connect(sqlite_file)
-cur = conn.cursor()
-
-printTableNames(cur)
-
+printData(conn)
 conn.close()
