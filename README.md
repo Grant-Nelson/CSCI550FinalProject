@@ -1,8 +1,6 @@
 # CSCI 550 - Final Project
 
-This is our final project at Montana State University 2019 for CSCI 550
-
-This is a work in progress
+This is [Grant Nelson](https://github.com/Grant-Nelson) and [John Singleton](https://github.com/JohnSingleton54) final project at Montana State University 2019 for CSCI 550
 
 ## Getting Started
 
