@@ -15,3 +15,4 @@ This is [Grant Nelson](https://github.com/Grant-Nelson) and [John Singleton](htt
 
 - https://www.kaggle.com/rtatman/188-million-us-wildfires/kernels
 - https://www.kaggle.com/katiej277/sqlite-in-python-intro
+- http://tuvalu.santafe.edu/~aaronc/powerlaws/
