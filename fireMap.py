@@ -2,11 +2,15 @@ import sqlite3
 
 #####
 ## This buckets the sum of fire sizes and count
-## based on longitude and latitude from the WildFire data.
-## The data is outputted as lon, lat, cumulative size, and count
+## based on latitude and longitude from the WildFire data.
+## The data is outputted as lat, lon, cumulative size, and count.
+## Remove the stats off the top of the file before importing it.
 ##
 ## Run with "python fireMap.py > fireMap.csv"
 #####
+
+bucketScalar = 2.0 # Number of buckets divisions per lon and lat
+countThreshold = 1000 # Must be 1 or more
 
 # Load wildfire data.
 sqlite_file = './FPA_FOD_20170508.sqlite'
@@ -16,45 +20,68 @@ cur.execute('SELECT LONGITUDE, LATITUDE, FIRE_SIZE FROM fires')
 data = cur.fetchall()
 
 # Get the range of the data's lat and lon.
-lonMin = data[0][0]
-lonMax = data[0][0]
 latMin = data[0][1]
 latMax = data[0][1]
+lonMin = data[0][0]
+lonMax = data[0][0]
 for entries in data:
-    lonMin = min(lonMin, entries[0])
-    lonMax = max(lonMax, entries[0])
     latMin = min(latMin, entries[1])
     latMax = max(latMax, entries[1])
+    lonMin = min(lonMin, entries[0])
+    lonMax = max(lonMax, entries[0])
 
-lonSize = lonMax-lonMin
 latSize = latMax-latMin
+lonSize = lonMax-lonMin
+latBucketNo = int(latSize*bucketScalar+1)
+lonBucketNo = int(lonSize*bucketScalar+1)
 
 # Create buckets for this data.
-bucketNo = 1000
-sizeBuckets = [[] for i in range(bucketNo)]
-countBuckets = [[] for i in range(bucketNo)]
+sizeSumBuckets = [[] for i in range(latBucketNo)]
+countBuckets = [[] for i in range(latBucketNo)]
 
 # Collect longitude, latitude, and size of fires bucketted.
 def addData(lon, lat, size):
-    i = int((lon-lonMin)/lonSize * (bucketNo-1))
-    j = int((lat-latMin)/latSize * (bucketNo-1))
-    if len(sizeBuckets[i]) <= 0:
-        sizeBuckets[i] = [0 for j in range(bucketNo)]
-        countBuckets[i] = [0 for j in range(bucketNo)]
-    sizeBuckets[i][j] += size
+    i = int((lat-latMin)/latSize * (latBucketNo-1))
+    j = int((lon-lonMin)/lonSize * (lonBucketNo-1))
+    if len(sizeSumBuckets[i]) <= 0:
+        sizeSumBuckets[i] = [0 for j in range(lonBucketNo)]
+        countBuckets[i] = [0 for j in range(lonBucketNo)]
+    sizeSumBuckets[i][j] += size
     countBuckets[i][j] += 1
 
 for entries in data:
     addData(entries[0], entries[1], entries[2])
+conn.close()
 
-# Print results as csv output.
-for i in range(bucketNo):
-    for j in range(bucketNo):
-        if len(sizeBuckets[i]) > 0:
+# Collect the maximum values from the buckets.
+maxSizeSum = 0.0
+maxSizeAvg = 0.0
+maxCount = 0
+for i in range(latBucketNo):
+    for j in range(lonBucketNo):
+        if len(sizeSumBuckets[i]) > 0:
             count = countBuckets[i][j]
             if count > 0:
-                lon = i/(bucketNo-1)*lonSize + lonMin
-                lat = j/(bucketNo-1)*latSize + latMin
-                size = sizeBuckets[i][j]
-                print("%f, %f, %f, %f" % (lon, lat, size, count))
-conn.close()
+                sizeSum = sizeSumBuckets[i][j]
+                maxSizeSum = max(maxSizeSum, sizeSum)
+                maxSizeAvg = max(maxSizeAvg, sizeSum/count)
+                maxCount = max(maxCount, count)
+
+# Print some stats about data.
+print("lat range: %f to %f (%f)" % (latMin, latMax, latSize))
+print("lon range: %f to %f (%f)" % (lonMin, lonMax, lonSize))
+print("buckets dim: %d, %d" % (latBucketNo, lonBucketNo))
+print("buckets range: %f, %f" % (latSize/latBucketNo, lonSize/lonBucketNo))
+print("max size: sum: %f, avg %f" % (maxSizeSum, maxSizeAvg))
+print("max count: %d" % (maxCount))
+
+# Print results as csv output.
+for i in range(latBucketNo):
+    for j in range(lonBucketNo):
+        if len(sizeSumBuckets[i]) > 0:
+            count = countBuckets[i][j]
+            if count >= countThreshold:
+                lat = i/(latBucketNo-1)*latSize + latMin
+                lon = j/(lonBucketNo-1)*lonSize + lonMin
+                size = sizeSumBuckets[i][j]
+                print("%f, %f, %f, %d" % (lat, lon, size, count))
