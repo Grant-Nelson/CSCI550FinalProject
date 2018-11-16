@@ -8,8 +8,9 @@ This is [Grant Nelson](https://github.com/Grant-Nelson) and [John Singleton](htt
 2. Install [numpy](https://scipy.org/install.html)
 3. Download [FPA_FOD_20170508.sqlite](https://www.kaggle.com/rtatman/188-million-us-wildfires) data
     - If is zipped on download, unzip here
-4. Run `$ python main.py`
-
+4. Run `python main.py`
+5. Or `python fireMap.py > fireMap.csv`
+6. Or `python sizeBucket.py > sizeBucket.csv`
 
 ## Some useful links
 
