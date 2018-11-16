@@ -1,5 +1,11 @@
 import sqlite3
 
+#####
+## This is basic method for reading from Wildfire database.
+##
+## Run with "python main.py"
+#####
+
 sqlite_file = './FPA_FOD_20170508.sqlite'
 
 def printData(conn):

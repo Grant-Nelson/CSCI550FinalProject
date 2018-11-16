@@ -104,4 +104,5 @@ venv.bak/
 .mypy_cache/
 
 # project
-FPA_FOD_20170508.sqlite
+*.sqlite
+*.csv
