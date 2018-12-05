@@ -5,7 +5,7 @@ import math
 ## This buckets the fire sizes.
 ## The data is outputted as size, count, log size, and log count.
 ##
-## Run with "python sizeBucket.py > sizeBucket.csv"
+## Run with "python sizeBucket1.py > sizeBucket1.csv"
 #####
 
 bucketCount = 1000
@@ -16,10 +16,11 @@ conn = sqlite3.connect(sqlite_file)
 cur = conn.cursor()
 cur.execute('SELECT FIRE_SIZE FROM fires')
 data = cur.fetchall()
+conn.close()
 
 # Get the range of the data.
-minSize = data[0][0]
-maxSize = data[0][0]
+minSize = float(data[0][0])
+maxSize = float(data[0][0])
 for entries in data:
     size = entries[0]
     minSize = min(minSize, size)
@@ -27,19 +28,19 @@ for entries in data:
 sizeRange = maxSize-minSize
 
 # Create buckets for this data.
-sizeBuckets = [0 for i in range(bucketCount)]
+sizeBuckets = [0.0 for i in range(bucketCount)]
 
 # Collect size of fires bucketted.
 for entries in data:
     size = entries[0]
     i = int((size-minSize)/sizeRange * (bucketCount-1))
-    sizeBuckets[i] += 1
-conn.close()
+    sizeBuckets[i] += 1.0
 
 # Print results as csv output.
 for i in range(bucketCount):
     count = sizeBuckets[i]
-    size = i/(bucketCount-1)*sizeRange + minSize
-    logCount = 0 if count <= 0 else math.log(count)
-    logSize = 0 if size <= 0 else math.log(size)
-    print("%f, %f, %f, %f" % (size, count, logSize, logCount))
+    if count > 0:
+        size = i/(bucketCount-1)*sizeRange + minSize
+        logCount = math.log(count)
+        logSize = 0 if size <= 0 else math.log(size)
+        print("%f, %f, %f, %f" % (size, count, logSize, logCount))

@@ -31,9 +31,11 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
 ### Running from Jupyter/Anaconda
 
 1. Install [Anaconda](https://www.anaconda.com/)
-2. Run `conda install bokeh` in Anaconda Console
-3. Run `conda install -c bokeh colorcet` in Anaconda Console
-4. Run scripts with Jupyter
+2. Install the following required packages using the Anaconda console
+    1. [bokeh](https://bokeh.pydata.org/en/latest/): Run `conda install bokeh`
+    2. [colorcet](https://colorcet.pyviz.org/): Run `conda install -c bokeh colorcet`
+    3. [powerlaw](https://pypi.org/project/powerlaw/): Run `conda install powerlaw`
+3. Run scripts with Jupyter
 
 ## Some useful links
 
