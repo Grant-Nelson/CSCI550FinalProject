@@ -7,12 +7,12 @@ from bokeh.plotting import figure, output_file, show
 # Constants
 sqlite_file = "FPA_FOD_20170508.sqlite"
 
-latMax = 50.0  # 50° North
-latMin = 25.0  # 25° North
+latMax = 50.0  # 50 Degrees North
+latMin = 25.0  # 25 Degrees North
 latRange = latMax-latMin
 
-lonMax = -60.0  # 60° West
-lonMin = -130.0 # 130° West
+lonMax = -60.0  # 60 Degrees West
+lonMin = -130.0 # 130 Degrees West
 lonRange = lonMax-lonMin
 
 width = 1400

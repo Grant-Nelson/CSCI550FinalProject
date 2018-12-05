@@ -15,14 +15,18 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
 
 1. Install the following required packages:
     1. [numpy](https://scipy.org/install.html): Run `pip install numpy`
-    2. [bokeh](https://bokeh.pydata.org/en/latest/): Run `pip install boken`
-    3. [colorcet](https://colorcet.pyviz.org/): Run `pip install colorcet`
-    4. [powerlaw](https://pypi.org/project/powerlaw/): Run `pip install powerlaw`
+    2. [powerlaw](https://pypi.org/project/powerlaw/): Run `pip install powerlaw`
+    3. The following packages are for the contourMap examples an may not work everywhere
+        1. [bokeh](https://bokeh.pydata.org/en/latest/): Run `pip install boken`
+        2. [colorcet](https://colorcet.pyviz.org/): Run `pip install colorcet`
 2. Run one of the following scripts
-    - `python checkSQL.py`
-    - `python fireMap.py > fireMap.csv`
-    - `python sizeBucket.py > sizeBucket.csv`
-    - `python contourMap1.py`
+    1. `python checkSQL.py`
+    2. `python contourMap0.py > mapData.csv`
+    3. `python contourMap1.py`
+    4. `python contourMap2.py`
+    5. `python contourMap3.py`
+    6. `python sizeBucket1.py > sizeBucket.csv`
+    7. `python sizeBucket2.py > sizeBucket.csv`
 
 ### Running from Jupyter/Anaconda
 
