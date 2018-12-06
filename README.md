@@ -27,6 +27,9 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
     5. `python contourMap3.py`
     6. `python sizeBucket1.py > sizeBucket.csv`
     7. `python sizeBucket2.py > sizeBucket.csv`
+    8. `python powerlawFull.py`
+    9. `python powerlawByState.py > byState.csv`
+    10. `python powerlawByYear.py > byYear.csv`
 
 ### Running from Jupyter/Anaconda
 
