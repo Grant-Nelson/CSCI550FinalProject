@@ -26,11 +26,17 @@ for i in range(0, len(tableData)):
     maxSize = max(maxSize, size)
     data.append(size)
 
-results = powerlaw.Fit(data[:100])
+results = powerlaw.Fit(data)
 
-print("Data Count:", len(data))
-print("Min Size Range:", minSize)
-print("Max Size Range:", maxSize)
+overXMin = 0
+for i in range(0, len(data)):
+    if data[i] > results.xmin:
+        overXMin += 1
+
+print("count:", len(data))
+print("overXMin:", overXMin)
+print("min:", minSize)
+print("max:", maxSize)
 print("alpha:", results.alpha)
 print("sigma:", results.sigma)
 print("xmin:", results.xmin)

@@ -3,7 +3,6 @@ import math
 
 #####
 ## This buckets the fire sizes.
-## The data is outputted as size, count, log size, and log count.
 ##
 ## Run with "python sizeBucket1.py > sizeBucket1.csv"
 #####
@@ -37,6 +36,7 @@ for entries in data:
     sizeBuckets[i] += 1.0
 
 # Print results as csv output.
+print("size, count, logSize, logCount")
 for i in range(bucketCount):
     count = sizeBuckets[i]
     if count > 0:

@@ -3,7 +3,6 @@ import math
 
 #####
 ## This log-buckets the fire sizes.
-## The data is outputted as size, count, log size, and log count.
 ##
 ## Run with "python sizeBucket2.py > sizeBucket2.csv"
 #####
@@ -50,6 +49,7 @@ for entries in data:
 conn.close()
 
 # Print results as csv output.
+print("bucketNo, sizeAvg, sizeMin, sizeMax, count, logSizeAvg, logCount")
 for i in range(bucketCount):
     count = countBuckets[i]
     if count > 0:
@@ -57,7 +57,7 @@ for i in range(bucketCount):
         sizeMin = sizeMinBuckets[i]
         sizeMax = sizeMaxBuckets[i]
         logCount = math.log(count)
-        logSize = 0 if sizeAvg <= 0 else math.log(sizeAvg)
+        logSizeAvg = 0 if sizeAvg <= 0 else math.log(sizeAvg)
         print("%d, " % (i) +
                 "%f, %f, %f, " % (sizeAvg, sizeMin, sizeMax) +
-                "%d, %f, %f" % (count, logSize, logCount))
+                "%d, %f, %f" % (count, logSizeAvg, logCount))

@@ -21,7 +21,7 @@ states = {}
 for i in range(0, len(tableData)):
     states[tableData[i][1]] = True
 
-print("State, Count, Min, Max, alpha, sigma, xmin")
+print("state, count, overXMin, min, max, alpha, sigma, xmin")
 
 for state in states:
     data = []
@@ -34,8 +34,13 @@ for state in states:
             maxSize = max(maxSize, size)
             data.append(size)
 
-    results = powerlaw.Fit(data[:100])
+    results = powerlaw.Fit(data)
 
-    print(state, ",", len(data), ",",  minSize,
+    overXMin = 0
+    for i in range(0, len(data)):
+        if data[i] > results.xmin:
+            overXMin += 1
+
+    print(state, ",", len(data), ",", overXMin, ",", minSize,
           ",",  maxSize, ",",  results.alpha,
           ",",results.sigma, ",",  results.xmin)

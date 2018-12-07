@@ -21,7 +21,7 @@ years = {}
 for i in range(0, len(tableData)):
     years[tableData[i][1]] = True
 
-print("Year, Count, Min, Max, alpha, sigma, xmin")
+print("year, count, overXMin, min, max, alpha, sigma, xmin")
 
 for year in years:
     data = []
@@ -34,8 +34,13 @@ for year in years:
             maxSize = max(maxSize, size)
             data.append(size)
 
-    results = powerlaw.Fit(data[:100])
+    results = powerlaw.Fit(data)
 
-    print(year, ",", len(data), ",",  minSize,
+    overXMin = 0
+    for i in range(0, len(data)):
+        if data[i] > results.xmin:
+            overXMin += 1
+
+    print(year, ",", len(data), ",", overXMin, ",", minSize,
           ",",  maxSize, ",",  results.alpha,
           ",",results.sigma, ",",  results.xmin)
