@@ -18,8 +18,9 @@ lonRange = lonMax-lonMin
 width = 1400
 height = 800
 
-latBucketNum = int(latRange*10.0)
-lonBucketNum = int(lonRange*10.0)
+bucketDiv = 30.0
+latBucketNum = int(latRange*bucketDiv)
+lonBucketNum = int(lonRange*bucketDiv)
 
 # Create buckets for the data
 sizeMaxBuckets = [[0.0 for j in range(lonBucketNum)] for i in range(latBucketNum)]
@@ -61,7 +62,7 @@ for i in range(latBucketNum):
             lon = j/float(lonBucketNum-1) * lonRange + lonMin
             value = pow(size/maxSize, 0.5)
             color = cc.fire[int(value * (len(cc.fire)-1))]
-            radius = countBuckets[i][j]*0.5/maxCount+0.2
+            radius = countBuckets[i][j]*0.4/maxCount+0.1
             
             latResults.append(lat)
             lonResults.append(lon)
