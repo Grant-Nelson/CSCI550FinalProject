@@ -41,6 +41,6 @@ for year in years:
         if data[i] > results.xmin:
             overXMin += 1
 
-    print(year, ",", len(data), ",", overXMin, ",", minSize,
-          ",",  maxSize, ",",  results.alpha,
-          ",",results.sigma, ",",  results.xmin)
+    print("%d, %d, %f, %f, %f, %f, %f, %f" %
+          (year, len(data), overXMin, minSize, maxSize,
+           results.alpha, results.sigma, results.xmin))

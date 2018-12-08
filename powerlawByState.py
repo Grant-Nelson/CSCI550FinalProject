@@ -41,6 +41,6 @@ for state in states:
         if data[i] > results.xmin:
             overXMin += 1
 
-    print(state, ",", len(data), ",", overXMin, ",", minSize,
-          ",",  maxSize, ",",  results.alpha,
-          ",",results.sigma, ",",  results.xmin)
+    print("%s, %d, %f, %f, %f, %f, %f, %f" %
+        (state, len(data), overXMin, minSize, maxSize,
+        results.alpha, results.sigma, results.xmin))
