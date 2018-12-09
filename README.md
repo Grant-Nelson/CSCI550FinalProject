@@ -25,11 +25,13 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
     3. `python contourMap1.py`
     4. `python contourMap2.py`
     5. `python contourMap3.py`
-    6. `python sizeBucket1.py > sizeBucket1.csv`
-    7. `python sizeBucket2.py > sizeBucket2.csv`
-    8. `python powerlawFull.py`
-    9. `python powerlawByState.py > byState.csv`
-    10. `python powerlawByYear.py > byYear.csv`
+    6. `python contourMap4.py`
+    7. `python contourMap5.py > mapData.csv`
+    8. `python sizeBucket1.py > sizeBucket1.csv`
+    9. `python sizeBucket2.py > sizeBucket2.csv`
+    10. `python powerlawFull.py`
+    11. `python powerlawByState.py > byState.csv`
+    12. `python powerlawByYear.py > byYear.csv`
 
 ### Running from Jupyter/Anaconda
 
