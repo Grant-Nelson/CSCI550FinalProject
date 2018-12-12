@@ -32,6 +32,9 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
     10. `python powerlawFull.py`
     11. `python powerlawByState.py > byState.csv`
     12. `python powerlawByYear.py > byYear.csv`
+    13. `python compareFull.py`
+    14. `python compareByState.py > compareByState.txt`
+    15. `python compareByYear.py > compareByYear.txt`
 
 ### Running from Jupyter/Anaconda
 
