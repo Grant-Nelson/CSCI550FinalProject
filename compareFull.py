@@ -48,17 +48,15 @@ print("overXMin:", len(overXMinData))
 distributions = []
 for dist in results.supported_distributions:
     distributions.append(dist)
-comparisons = []
 for i in range(len(distributions)):
     for j in range(i+1, len(distributions)):
         R, p = results.distribution_compare(distributions[i], distributions[j], normalized_ratio=True)
         if not math.isnan(R):
             if R < 0:
-                comparisons.append("%.9f, %.9f, %s, %s" % (p, -R, distributions[j], distributions[i]))
+                print(distributions[j]+" to "+distributions[i])
+                print("   R:", -R)
+                print("   p:", p)
             else:
-                comparisons.append("%.9f, %.9f, %s, %s" % (p, R, distributions[i], distributions[j]))
-comparisons.sort(reverse=True)
-
-print("p, R, distribution, distribution")
-for comp in comparisons:
-    print(comp)
+                print(distributions[i]+" to "+distributions[j])
+                print("   R:", R)
+                print("   p:", p)
