@@ -2,6 +2,10 @@
 
 This is [Grant Nelson](https://github.com/Grant-Nelson) and [John Singleton](https://github.com/JohnSingleton54) final project at Montana State University 2019 for CSCI 550
 
+**Disclamer:** The commits contain code from both Grant and John regardless of the committer.
+This project has no connection to Workiva regardless of the committer.
+(Grant committed both his and John's code from either his work or home computer, hence the committer name.)
+
 ## Getting Started
 
 1. Download [FPA_FOD_20170508.sqlite](https://www.kaggle.com/rtatman/188-million-us-wildfires) data
@@ -35,6 +39,7 @@ This method works for Linux and Mac. It also work for Windows if run from Visual
     13. `python compareFull.py`
     14. `python compareByState.py > compareByState.txt`
     15. `python compareByYear.py > compareByYear.txt`
+3. Some scripts output csv files which can be plotted with Google Sheets, Excel, or plot.ly
 
 ### Running from Jupyter/Anaconda
 
